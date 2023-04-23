@@ -6,6 +6,7 @@ import Login from "components/Login";
 import NoMatch from "components/NoMatch";
 import Logout from "components/Logout";
 import Employees from "./Employees";
+import Reasons from "./Reasons";
 
 export default function App() {
   const token = localStorage.getItem("token");
@@ -19,7 +20,7 @@ export default function App() {
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/logout" element={<Logout />} />
         <Route exact path="/employees" element={<Employees />} />
-        {/* <Route exact path="/reasons" element={<Logout />} /> */}
+        <Route exact path="/reasons" element={<Reasons />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </>

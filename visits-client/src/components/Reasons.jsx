@@ -14,19 +14,19 @@ export default function Employees() {
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [employees, setEmployees] = useState([]);
+  const [reasons, setReasons] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    axios.get("http://127.0.0.1:8000/api/employees", config).then(
+    axios.get("http://127.0.0.1:8000/api/reasons", config).then(
       (response) => {
         setIsLoaded(true);
-        const employees = response.data["hydra:member"];
-        console.log(employees);
-        setEmployees(employees);
+        const reasons = response.data["hydra:member"];
+        console.log(reasons);
+        setReasons(reasons);
       },
       (error) => {
         setIsLoaded(true);
@@ -38,7 +38,7 @@ export default function Employees() {
   if (error) {
     return (
       <>
-        <Navbar current="employees" />
+        <Navbar current="reasons" />
         <div className="m-10">
           <div>Error: {error.message}</div>
         </div>
@@ -47,7 +47,7 @@ export default function Employees() {
   } else if (!isLoaded) {
     return (
       <>
-        <Navbar current="employees" />
+        <Navbar current="reasons" />
         <div className="m-10">
           <div>Loading...</div>
         </div>
@@ -56,45 +56,30 @@ export default function Employees() {
   } else {
     return (
       <>
-        <Navbar current="employees" />
+        <Navbar current="reasons" />
         <div className="m-10">
           <ul>
-            {employees.map((employee) => (
+            {reasons.map((reason) => (
               <li className="pb-2">
-                {employee.firstname} {employee.lastname}
+                {reason.reasonName}
               </li>
             ))}
           </ul>
         </div>
         <form className="m-20">
-          <h1>Saisie d'un nouvel employé :</h1>
+          <h1>Saisie d'un nouveau motif de visite :</h1>
           <div className="sm:col-span-3">
             <label
-              htmlFor="first-name"
+              htmlFor="reasonName"
               className="text-sm font-medium leading-6 text-gray-900"
             >
-              Prénom
+              Motif
             </label>
             <input
               type="text"
-              name="first-name"
-              id="first-name"
-              autoComplete="given-name"
-              className="ml-5 w-80 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div>
-          <div className="sm:col-span-3">
-            <label
-              htmlFor="last-name"
-              className="text-sm font-medium leading-6 text-gray-900"
-            >
-              Nom
-            </label>
-            <input
-              type="text"
-              name="last-name"
-              id="last-name"
-              autoComplete="name"
+              name="reasonName"
+              id="reasonName"
+              autoComplete="motif"
               className="ml-5 w-80 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             />
           </div>
