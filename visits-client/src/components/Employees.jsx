@@ -15,6 +15,10 @@ export default function Employees() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [employees, setEmployees] = useState([]);
+  const [newEmployee, setNewEmployee] = useState({
+    firstname: "",
+    lastname: "",
+  });
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -70,32 +74,36 @@ export default function Employees() {
           <h1>Saisie d'un nouvel employé :</h1>
           <div className="sm:col-span-3">
             <label
-              htmlFor="first-name"
+              htmlFor="firstname"
               className="text-sm font-medium leading-6 text-gray-900"
             >
               Prénom
             </label>
             <input
               type="text"
-              name="first-name"
-              id="first-name"
-              autoComplete="given-name"
+              name="firstname"
+              id="firstname"
+              value={newEmployee.firstname}
+              autoComplete="givenname"
               className="ml-5 w-80 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              onChange={handleChange}
             />
           </div>
           <div className="sm:col-span-3">
             <label
-              htmlFor="last-name"
+              htmlFor="lastname"
               className="text-sm font-medium leading-6 text-gray-900"
             >
               Nom
             </label>
             <input
               type="text"
-              name="last-name"
-              id="last-name"
+              name="lastname"
+              id="lastname"
+              value={newEmployee.lastname}
               autoComplete="name"
               className="ml-5 w-80 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              onChange={handleChange}
             />
           </div>
           <button
@@ -112,5 +120,18 @@ export default function Employees() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(event.target);
+    axios
+      .post("http://127.0.0.1:8000/api/employees", newEmployee)
+      .then((response) => {
+        console.log(response);
+        window.location.reload();
+      })
+  }
+  function handleChange(event) {
+    event.persist();
+    setNewEmployee((newEmployee) => ({
+      ...newEmployee,
+      [event.target.name]: event.target.value,
+    }));
   }
 }
