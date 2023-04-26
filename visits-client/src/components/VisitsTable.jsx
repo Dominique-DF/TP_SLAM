@@ -4,9 +4,9 @@ import VisitsTableData from './VisitsTableData.jsx';
 
 export default function VisitTable(props) {
         return (
-            <div>
+            <table>
                 <VisitsTableHeader />
                 <VisitsTableData visitors={ props.visitors } />
-            </div>
+            </table>
         );
 }

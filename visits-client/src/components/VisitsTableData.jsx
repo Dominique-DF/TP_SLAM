@@ -2,10 +2,18 @@ import React from "react";
 
 export default function VisitsTableData(props) {
   return (
-    <ul>
+    <>
       {props.visitors?.map((visitor, index) => (
-        <li key={index}>{visitor.firstname}</li>
+        // <li key={index}>{visitor.firstname}</li>
+        <tr>
+          <td>{visitor.firstname}</td>
+          <td>{visitor.lastname}</td>
+          <td>{visitor.company}</td>
+          <td>{visitor.reason}</td>
+          <td>{visitor.encouteredPerson}</td>
+          <td>{visitor.entranceDate}</td>
+        </tr>
       ))}
-    </ul>
+      </>
   );
 }
