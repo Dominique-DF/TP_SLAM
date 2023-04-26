@@ -120,6 +120,10 @@ export default function Employees() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(event.target);
+  const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
     axios
       .post("http://127.0.0.1:8000/api/employees", newEmployee)
       .then((response) => {

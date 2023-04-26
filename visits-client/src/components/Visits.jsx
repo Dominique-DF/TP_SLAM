@@ -14,6 +14,8 @@ export default function Visits() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [visitors, setVisitors] = useState([]);
+  const [reasons, setReasons] = useState([]);
+  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");

@@ -5,7 +5,7 @@ export default function VisitsTableData(props) {
     <>
       {props.visitors?.map((visitor, index) => (
         // <li key={index}>{visitor.firstname}</li>
-        <tr>
+        <tr key={visitor.id}>
           <td>{visitor.firstname}</td>
           <td>{visitor.lastname}</td>
           <td>{visitor.company}</td>
