@@ -3,12 +3,13 @@ import React from 'react';
 export default function VisitsHeader() {
     return (
         <tr>
-            <td>Nom</td>
-            <td>Prénom</td>
-            <td>Entreprise</td>
-            <td>Motif</td>
-            <td>Personne rencontrée</td>
-            <td>Date entrée</td>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Entreprise</th>
+            <th>Motif</th>
+            <th>Personne rencontrée</th>
+            <th>Date entrée</th>
+            <th></th>
         </tr>
     );
 }

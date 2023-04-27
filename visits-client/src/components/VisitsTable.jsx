@@ -6,7 +6,9 @@ export default function VisitTable(props) {
         return (
             <table>
                 <VisitsTableHeader />
-                <VisitsTableData visitors={ props.visitors } />
+                {props.visitors?.filter(v => v.leavingDate === undefined).map((visitor, index) => (
+                               <VisitsTableData visitor={ visitor } />
+                ))}
             </table>
         );
 }
